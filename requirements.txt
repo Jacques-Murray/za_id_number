@@ -1,0 +1,7 @@
+pytest
+twine
+pipreqs
+pylint
+black
+flake8
+setuptools
