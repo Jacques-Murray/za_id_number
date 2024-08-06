@@ -1,3 +1,10 @@
-from typing import Protocol
+"""
+This module contains the custom exception that is raised when the ID number is 
+invalid.
+"""
 
-class Validator
+
+class ValidationError(Exception):
+    """
+    A custom exception that is raised when the ID number validation fails.
+    """
