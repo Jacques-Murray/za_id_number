@@ -6,6 +6,9 @@ import re
 from abc import ABC, abstractmethod
 from datetime import date, datetime
 
+from .citizenship import CITIZENSHIP
+from .gender import GENDER
+from .id_number_data import IDNumberData
 from .validate import ValidationError
 
 id_number_validation = re.compile(r"^\d{13}$")
@@ -125,3 +128,56 @@ class ZAValidator(ABC):
         year = self._fix_millenium(year)
 
         return date(year=year, month=month, day=day)
+
+    def parse_gender(self, id_number: str) -> GENDER:
+        """
+        Parse the gender from the ID number
+        """
+        if not self.validate(id_number=id_number):
+            raise ValidationError("Invalid ID number")
+
+        digit = id_number[6]
+
+        if digit in ["0", "1", "2", "3", "4"]:
+            return GENDER.FEMALE
+        else:
+            return GENDER.MALE
+
+    def parse_checksum(self, id_number: str) -> int:
+        """
+        Parse the checksum from the ID number
+        """
+        if not self.validate(id_number=id_number):
+            raise ValidationError("Invalid ID number")
+
+        return int(id_number[-1])
+
+    def parse_citizenship(self, id_number: str) -> CITIZENSHIP:
+        """
+        Parse the citizenship from the ID number
+        """
+        if not self.validate(id_number=id_number):
+            raise ValidationError("Invalid ID number")
+
+        digit = int(id_number[10:11])
+
+        if digit == 8:
+            return CITIZENSHIP.CITIZEN
+        else:
+            return CITIZENSHIP.PERMANENT_RESIDENT
+
+    @abstractmethod
+    def parse_id_number_data(self, id_number: str) -> IDNumberData:
+        """
+        Parse the ID number data
+        """
+        if not self.validate(id_number=id_number):
+            raise ValidationError("Invalid ID number")
+
+        return IDNumberData(
+            date_of_birth=self.parse_date_of_birth(id_number=id_number),
+            gender=self.parse_gender(id_number=id_number),
+            sequence_number=int(id_number[7:12]),
+            citizenship=self.parse_citizenship(id_number=id_number),
+            checksum=self.parse_checksum(id_number=id_number),
+        )

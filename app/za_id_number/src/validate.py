@@ -13,12 +13,12 @@ class Validator(Protocol):
     A protocol for the ID number validator
     """
 
-    def validate(self, id_number: str) -> bool:
+    def validate(self, id_number: str) -> bool | None:
         """
         Validate the ID number
         """
 
-    def parse_id_number_data(self, id_number: str) -> IDNumberData:
+    def parse_id_number_data(self, id_number: str) -> IDNumberData | None:
         """
         Parse the ID number data
         """
