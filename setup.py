@@ -29,6 +29,6 @@ setup(
         "Natural Language :: English",
     ],
     install_requires=[],
-    extras_require={"dev": ["pytest", "twine", "bump-my-version"]},
+    extras_require={"dev": ["pytest", "twine"]},
     python_requires=">=3.11",
 )
