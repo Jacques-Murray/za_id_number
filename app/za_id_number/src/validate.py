@@ -1,5 +1,5 @@
 """
-This module contains the custom exception that is raised when the ID number is 
+This module contains the custom exception that is raised when the ID number is
 invalid.
 """
 
