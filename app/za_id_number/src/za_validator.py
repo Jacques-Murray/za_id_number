@@ -48,8 +48,8 @@ class ZAValidator(ABC):
 
         if two_digit_year < current_year_two_digits:
             return two_digit_year + 2000
-        else:
-            return two_digit_year + 1900
+
+        return two_digit_year + 1900
 
     def _validate_date_of_birth(self, id_number: str) -> bool:
         """
@@ -140,8 +140,8 @@ class ZAValidator(ABC):
 
         if digit in ["0", "1", "2", "3", "4"]:
             return GENDER.FEMALE
-        else:
-            return GENDER.MALE
+
+        return GENDER.MALE
 
     def parse_checksum(self, id_number: str) -> int:
         """
@@ -163,8 +163,8 @@ class ZAValidator(ABC):
 
         if digit == 8:
             return CITIZENSHIP.CITIZEN
-        else:
-            return CITIZENSHIP.PERMANENT_RESIDENT
+
+        return CITIZENSHIP.PERMANENT_RESIDENT
 
     @abstractmethod
     def parse_id_number_data(self, id_number: str) -> IDNumberData:
