@@ -9,7 +9,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="za_id_number",
-    version="0.0.10",
+    version="0.1.0",
     author="Jacques Murray",
     author_email="jacquesmmurray@gmail.com",
     url="https://github.com/Jacques-Murray/za_id_number",
