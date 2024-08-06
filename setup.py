@@ -30,7 +30,15 @@ setup(
     ],
     install_requires=[],
     extras_require={
-        "dev": ["pytest", "twine", "pipreqs", "pylint", "black", "flake8"]
+        "dev": [
+            "pytest",
+            "twine",
+            "pipreqs",
+            "pylint",
+            "black",
+            "flake8",
+            "setuptools",
+        ],
     },
     python_requires=">=3.11",
 )
